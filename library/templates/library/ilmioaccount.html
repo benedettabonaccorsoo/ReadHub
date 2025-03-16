@@ -1,0 +1,40 @@
+{% extends 'library/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="account-container">
+    <h2>👤 Il Mio Account</h2>
+
+    <div class="account-info">
+        <p><strong>Nome:</strong> {{ user.first_name }}</p>
+        <p><strong>Cognome:</strong> {{ user.last_name }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+    </div>
+
+    <div class="reservations">
+    <h3>Le Mie Prenotazioni</h3>
+    <ul class="reservation-list">
+    {% for reservation in reservations %}
+        <li>
+            <span>{{ reservation.book.title }}</span>
+            <small>Prenotato il: {{ reservation.date_reserved|date:"d/m/Y H:i" }}</small>
+            <form action="{% url 'return_book' reservation.book.id %}" method="POST" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Restituisci</button>
+            </form>
+        </li>
+    {% empty %}
+        <p>Non hai ancora prenotato nessun libro.</p>
+    {% endfor %}
+</ul>
+
+</div>
+
+
+    <div class="btn-container">
+        <a href="{% url 'search_books' %}" class="btn">📚 Cerca un Libro</a>
+        <a href="{% url 'logout' %}" class="btn logout">🚪 Logout</a>
+    </div>
+</div>
+{% endblock %}
+

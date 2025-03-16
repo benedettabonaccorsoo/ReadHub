@@ -1,0 +1,41 @@
+
+{% extends 'library/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h2>📖 Elenco Libri Disponibili</h2>
+
+    <table class="book-table">
+        <thead>
+            <tr>
+                <th>Titolo</th>
+                <th>Autore</th>
+                <th>Genere</th>
+                <th>Disponibilità</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+            <tr>
+                <td>{{ book.title }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.genre }}</td>
+                <td>
+                    {% if book.available %}
+                        <a href="{% url 'reserve_book' book.id %}" class="btn">Prenota</a>
+                    {% else %}
+                        <span class="not-available">Non disponibile</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" class="no-results">Nessun libro disponibile.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+

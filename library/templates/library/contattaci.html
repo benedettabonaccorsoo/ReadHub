@@ -1,0 +1,94 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contattaci - Biblioteca Online</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ecf0f1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .contact-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .contact-info {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .email {
+            font-size: 18px;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+
+        .message-box {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none;
+            font-size: 14px;
+            height: 100px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contact-container">
+        <h2>Contattaci</h2>
+        <p class="contact-info">Se hai bisogno di aiuto, puoi contattarci via email:</p>
+
+        <p class="email">supporto@bibliotecaonline.com</p>
+
+        <p class="contact-info">Oppure inviaci un messaggio:</p>
+        <form method="POST" action="{% url 'contattaci' %}">
+            {% csrf_token %}
+            <textarea class="message-box" name="message" placeholder="Scrivi il tuo messaggio qui..." required></textarea>
+            <button type="submit" class="btn">Invia Messaggio</button>
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Conferma Prenotazione</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background-color: #f4f4f9; }
+        .container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: inline-block; }
+        .btn { background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Prenotazione Confermata!</h2>
+        <p>Hai prenotato con successo il libro: <strong>{{ book.title }}</strong></p>
+        <a href="{% url 'search_books' %}" class="btn">Torna alla ricerca</a>
+        <a href="{% url 'home' %}" class="btn">Torna alla Home</a>
+    </div>
+</body>
+</html>
+

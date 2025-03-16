@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Risultati della Ricerca</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <h1 class="logo">Biblioteca Online</h1>
+    <ul class="nav-links">   
+      <li><a href="{% url 'account' %}">Il mio account</a></li>
+      <li><a href="{% url 'contattaci' %}">Contattaci</a></li>
+      <li><a href="{% url 'notifiche' %}">Notifiche</a></li>
+      <li><a href="{% url 'logout' %}" class="btn-logout">Log out</a></li>
+    </ul>
+  </nav>
+        
+  <div class="home-content">
+    <h2>📖 Risultati della Ricerca</h2>
+
+    <table class="book-table">
+      <thead>
+        <tr>  
+          <th>Titolo</th>
+          <th>Autore</th>
+          <th>Genere</th>
+          <th>Disponibilità</th>
+          <th>Azioni</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for book in books %}
+        <tr>
+          <td><strong>{{ book.title }}</strong></td>
+          <td>{{ book.author }}</td>
+          <td>{{ book.genre }}</td>
+          <td class="{% if book.available %}available{% else %}not-available{% endif %}">
+            {% if book.available %}
+              ✅ Disponibile
+            {% else %}
+              ❌ Non disponibile
+            {% endif %}
+          </td>
+          <td>
+            {% if book.available %}
+               <a href="{% url 'reserve_book' book.id %}" class="btn-prenota">Prenota</a>
+            {% else %}
+              <form action="{% url 'request_notification' book.id %}" method="POST">
+                 {% csrf_token %}
+                 <button type="submit" class="btn btn-warning">Avvisami</button>
+              </form>
+            {% endif %}
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="5" class="no-results">Nessun libro trovato.</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
+

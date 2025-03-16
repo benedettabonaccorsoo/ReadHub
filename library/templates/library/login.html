@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <h1 class="logo">Biblioteca Online</h1>
+    <ul class="nav-links">
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'contattaci' %}">Contattaci</a></li>
+    </ul>
+  </nav>
+
+  <div class="home-content">
+    <h2>Login</h2>
+    
+    {% if error %}
+      <p style="color:red;">{{ error }}</p>
+    {% endif %}
+    
+    <form method="POST" action="">
+      {% csrf_token %}
+      <div style="margin-bottom: 10px;">
+        <label for="email"><strong>Email:</strong></label><br>
+        <input type="email" name="email" required>
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <label for="password"><strong>Password:</strong></label><br>
+        <input type="password" name="password" required>
+      </div>
+
+      <button type="submit" class="btn-green">Accedi</button>
+    </form>
+
+    <p style="margin-top: 10px;">
+      Non hai un account? 
+      <a href="{% url 'registrazione' %}" style="color: #4CAF50; font-weight: bold;">Registrati qui</a>
+    </p>
+  </div>
+</body>
+</html>
+

@@ -1,0 +1,32 @@
+{% extends 'library/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h2>📢 Le tue notifiche</h2>
+
+    {% if notifications %}
+        <table class="notifications-table">
+            <thead>
+                <tr>
+                    <th>📅 Data</th>
+                    <th>📖 Libro</th>
+                    <th>📌 Stato</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for notification in notifications %}
+                <tr>
+                    <td>{{ notification.created_at|date:"d/m/Y H:i" }}</td>
+                    <td><strong>{{ notification.book.title }}</strong></td>
+                    <td class="status">Disponibile</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="no-notifications">Non hai notifiche al momento.</p>
+    {% endif %}
+</div>
+{% endblock %}
+

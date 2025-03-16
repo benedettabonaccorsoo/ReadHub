@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Online</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo">📚 Biblioteca Online</h1>
+            <ul class="nav-links">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'account' %}">Il mio account</a></li>
+                <li><a href="{% url 'contattaci' %}">Contattaci</a></li>
+                <li><a href="{% url 'notifiche' %}">Notifiche</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}" class="btn-logout">Log out</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Accedi</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenuto della Pagina -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+</body>
+</html>
+

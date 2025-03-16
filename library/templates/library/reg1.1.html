@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Registrazione - Biblioteca Online</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<!-- Navbar (se desideri) -->
+<nav class="navbar">
+  <h1 class="logo">Biblioteca Online</h1>
+  <ul class="nav-links">
+    <li><a href="{% url 'home' %}">Home</a></li>
+    <li><a href="{% url 'login' %}">Accedi</a></li>
+    <li><a href="{% url 'contattaci' %}">Contattaci</a></li>
+  </ul>
+</nav>
+
+<!-- Contenuto principale -->
+<div class="home-content">
+  <h2>Registrazione</h2>
+
+  <!-- Se la view ti passa un messaggio di errore (es. email già registrata) -->
+  {% if error %}
+    <p style="color:red;">{{ error }}</p>
+  {% endif %}
+
+  <form method="POST">
+    {% csrf_token %}
+    <div style="margin-bottom: 10px;">
+      <label for="first-name"><strong>Nome:</strong></label><br>
+      <input type="text" name="first-name" required>
+    </div>
+
+    <div style="margin-bottom: 10px;">
+      <label for="last-name"><strong>Cognome:</strong></label><br>
+      <input type="text" name="last-name" required>
+    </div>
+
+    <div style="margin-bottom: 10px;">
+      <label for="email"><strong>Email:</strong></label><br>
+      <input type="email" name="email" required>
+    </div>
+
+    <div style="margin-bottom: 10px;">
+      <label for="password"><strong>Password:</strong></label><br>
+      <input type="password" name="password" required>
+    </div>
+
+    <button type="submit" class="btn-green">Registrati</button>
+  </form>
+
+  <!-- Link per chi ha già un account -->
+  <p style="margin-top: 10px;">
+    Hai già un account?
+    <a href="{% url 'login' %}" style="color: #4CAF50; font-weight: bold;">Accedi qui</a>
+  </p>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,36 @@
+{% extends 'library/base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="home-content">
+    <div class="intro-box">
+      <h2>Benvenuto nella tua Biblioteca Online</h2>
+      <p>
+        Sei pronto a cercare e prenotare i tuoi libri preferiti?
+        Effettua il login e inizia la ricerca!
+      </p>
+    </div>
+
+    <!-- Box per la ricerca libri -->
+    <div class="search-box">
+      <h3>Cerca un Libro</h3>
+      <form action="{% url 'search_books' %}" method="GET">
+        <input type="text" name="title" placeholder="Titolo del libro" />
+        <input type="text" name="author" placeholder="Autore" />
+        <select name="category">
+          <option value="">-- Seleziona una categoria --</option>
+          <option value="romanzo">Romanzo</option>
+          <option value="giallo">Giallo</option>
+          <option value="fantascienza">Fantascienza</option>
+        </select>
+        <button type="submit" class="btn-green">Cerca</button>
+      </form>
+
+      <!-- Link per sfogliare il catalogo completo -->
+      <a href="{% url 'search_books' %}" class="catalog-button">
+        📖 Sfoglia il Catalogo
+      </a>
+    </div>
+  </div>
+{% endblock %}
+
