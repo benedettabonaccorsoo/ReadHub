@@ -18,15 +18,9 @@ Git
 Virtual environment (optional but recommended)
 SQLite (included with Django)
 2️⃣ Clone the Repository
-bash
-Copia
-Modifica
 git clone https://github.com/benedettabonaccorso/ReadHub.git
 cd ReadHub
 3️⃣ Create and Activate a Virtual Environment
-bash
-Copia
-Modifica
 # Create virtual environment
 python3 -m venv myenv
 
@@ -36,26 +30,14 @@ source myenv/bin/activate
 # On Windows (Command Prompt):
 myenv\Scripts\activate
 4️⃣ Install Dependencies
-bash
-Copia
-Modifica
 pip install -r requirements.txt
 5️⃣ Apply Migrations & Setup Database
-bash
-Copia
-Modifica
 python3 manage.py migrate
 6️⃣ Create a Superuser (Optional for Admin Access)
-bash
-Copia
-Modifica
 python3 manage.py createsuperuser
 Follow the prompts to create an admin account.
 
 7️⃣ Run the Development Server
-bash
-Copia
-Modifica
 python3 manage.py runserver
 The project will be accessible at:
 🔗 http://127.0.0.1:8000/
